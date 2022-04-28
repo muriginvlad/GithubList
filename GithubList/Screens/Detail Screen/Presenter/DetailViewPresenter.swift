@@ -31,25 +31,19 @@ class DetailViewPresenter: DetailViewPresenterProtocol {
         self.view = view
         self.networkService = networkService
         self.router = router
-        setData(user)
         
+        setData(user)
     }
     
     private func setData(_ user: String){
-        networkService.getSingleUser(userName: user) { [weak self] result in
-            guard let self = self else {return}
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let user):
-                    if let data = user {
-                        self.user = UserData.init(data)
-                        self.setUserInfo()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
+        self.networkService.getSingleUser(userName: user)
+            .done(on: DispatchQueue.main) { [weak self] user in
+                self?.user = UserData.init(user)
+                self?.setUserInfo()
             }
-        }
+            .catch { error in
+                print(error)
+            }
     }
     
     func setUserInfo() {

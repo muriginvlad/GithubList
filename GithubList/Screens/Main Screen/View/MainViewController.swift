@@ -81,7 +81,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! GitUserCell
         cell.set(self.presenter.users?[indexPath.row])
-        if indexPath.row == (self.presenter.users?.count ?? 0) - 10 {
+        if indexPath.row == (self.presenter.users?.count ?? 0) - 30 {
                 self.presenter.loadMoreUsersList()
         }
         return cell

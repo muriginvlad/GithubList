@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol MainViewProtocol: class {
     func success()
@@ -28,7 +29,6 @@ class MainViewPresenter: MainViewPresenterProtocol {
     private var router: RouterProtocol?
     private var lastLoadId = 0
     weak var view: MainViewProtocol?
-    
     var users: [GitUserCellModel]?
     
     
@@ -41,22 +41,14 @@ class MainViewPresenter: MainViewPresenterProtocol {
     func getFirstUsersList() {
         self.lastLoadId = 0
         
-        networkService.getAllUser(since: lastLoadId) { [weak self] result in
-            guard let self = self else {return}
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let users):
-                    if let data = users {
-                        self.users = data.map {
-                            GitUserCellModel.init($0)
-                        }
-                    }
-                    self.view?.success()
-                case .failure(let error):
-                    self.view?.failure(error: error)
-                }
+        self.networkService.getAllUser(since: lastLoadId)
+            .done(on: DispatchQueue.main) { [weak self] users in
+                self?.users = users.map { GitUserCellModel.init($0) }
+                self?.view?.success()
             }
-        }
+            .catch { error in
+                self.view?.failure(error: error)
+            }
     }
     
     func loadMoreUsersList(){
@@ -64,22 +56,17 @@ class MainViewPresenter: MainViewPresenterProtocol {
             lastLoadId = lastElement.id
         }
         
-        networkService.getAllUser(since: lastLoadId) { [weak self] result in
-            guard let self = self else {return}
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let users):
-                                        
-                    users?.forEach {
-                        self.users?.append(GitUserCellModel.init($0))
-                    }
-                    self.view?.success()
-                case .failure(let error):
-                    self.view?.failure(error: error)
+        self.networkService.getAllUser(since: lastLoadId)
+            .done(on: DispatchQueue.main) { [weak self] users in
+                _ = users.map {
+                    self?.users?.append(GitUserCellModel.init($0))
                 }
+                
+                self?.view?.success()
             }
-        }
-        DispatchQueue(label: <#T##String#>)
+            .catch { error in
+                self.view?.failure(error: error)
+            }
     }
     
     func tapOnUser(user: String) {

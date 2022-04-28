@@ -40,7 +40,7 @@ extension GitHub: TargetType {
     }
     
     public var headers: [String: String]? {
-        [ "Authorization" :  "token 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" ] }
+        [ "Authorization" :  "token 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"] }
 }
 
 public func url(_ route: TargetType) -> String {
