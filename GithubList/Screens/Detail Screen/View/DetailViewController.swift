@@ -57,7 +57,6 @@ class DetailViewController: UIViewController {
         return titleLabel
     }()
     
-    
     var followingLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "organizationLabel"
@@ -90,9 +89,7 @@ class DetailViewController: UIViewController {
         stackView.spacing = 5
         stackView.isHidden = true
         return stackView
-        
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,7 +110,6 @@ class DetailViewController: UIViewController {
         stackView.addArrangedSubview(followingLabel)
         stackView.addArrangedSubview(followersLabel)
         stackView.addArrangedSubview(creationLabel)
-        
     }
     
     private func setConstraints(){
@@ -133,9 +129,30 @@ class DetailViewController: UIViewController {
             $0.center.equalToSuperview()
         }
     }
+    
+    private func showAlert(text: String) {
+        let alert = UIAlertController(title: "Ошибка", message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Попробовать снова", style: .default, handler: { action in
+            self.spinner.isHidden = false
+            self.spinner.stopAnimating()
+            self.presenter.reload()
+        }))
+        alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: { action in
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension DetailViewController:  DetailViewProtocol {
+   
+    func failure(error: Error) {
+        spinner.stopAnimating()
+        spinner.isHidden = true
+        
+        self.showAlert(text: error.localizedDescription)
+    }
+    
     func setUserInfo(user: UserData?) {
         spinner.stopAnimating()
         spinner.isHidden = true

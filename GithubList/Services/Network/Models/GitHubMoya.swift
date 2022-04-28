@@ -11,6 +11,8 @@ public enum GitHub {
 }
 
 extension GitHub: TargetType {
+    private var tokenGit: String { "token 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" }
+    
     public var baseURL: URL { URL(string: "https://api.github.com")! }
     
     public var path: String {
@@ -30,8 +32,6 @@ extension GitHub: TargetType {
             return .requestParameters(parameters: ["since": since, "per_page": perPage], encoding: URLEncoding.default)
         case .userDetail:
             return .requestParameters(parameters: ["sort": "pushed"], encoding: URLEncoding.default)
-        default:
-            return .requestPlain
         }
     }
 
@@ -40,7 +40,7 @@ extension GitHub: TargetType {
     }
     
     public var headers: [String: String]? {
-        [ "Authorization" :  "token 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"] }
+        [ "Authorization" :  tokenGit] }
 }
 
 public func url(_ route: TargetType) -> String {

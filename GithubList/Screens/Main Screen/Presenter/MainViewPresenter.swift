@@ -8,12 +8,12 @@
 import Foundation
 import PromiseKit
 
-protocol MainViewProtocol: class {
+protocol MainViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
 }
 
-protocol MainViewPresenterProtocol: class {
+protocol MainViewPresenterProtocol: AnyObject {
     var users: [GitUserCellModel]? {get set}
     init(view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     
@@ -61,7 +61,6 @@ class MainViewPresenter: MainViewPresenterProtocol {
                 _ = users.map {
                     self?.users?.append(GitUserCellModel.init($0))
                 }
-                
                 self?.view?.success()
             }
             .catch { error in

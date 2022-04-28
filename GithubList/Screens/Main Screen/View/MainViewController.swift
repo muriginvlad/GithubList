@@ -59,17 +59,29 @@ class MainViewController: UIViewController {
         self.presenter.getFirstUsersList()
     }
     
+    private func showAlert(text: String) {
+        let alert = UIAlertController(title: "Ошибка", message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Попробовать снова", style: .default, handler: { action in
+            self.presenter.getFirstUsersList()
+        }))
+        alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: { action in
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension MainViewController: MainViewProtocol {
     func success() {
         refreshControl.endRefreshing()
         tableView.reloadData()
+       
     }
     
     func failure(error: Error) {
         refreshControl.endRefreshing()
-        print(error)
+        self.showAlert(text: error.localizedDescription)
+       
     }
 }
 
