@@ -11,7 +11,7 @@ public enum GitHub {
 }
 
 extension GitHub: TargetType {
-    private var tokenGit: String { "token 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" }
+    private var tokenGit: String { "token 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" }
     
     public var baseURL: URL { URL(string: "https://api.github.com")! }
     

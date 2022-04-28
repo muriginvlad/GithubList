@@ -31,6 +31,8 @@
 		216D744728185CB9000AC835 /* UserDetailNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216D744628185CB9000AC835 /* UserDetailNetworkModel.swift */; };
 		216D744928186745000AC835 /* MainUserNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216D744828186745000AC835 /* MainUserNetworkModel.swift */; };
 		216D744E28193FB9000AC835 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 216D744D28193FB9000AC835 /* Kingfisher */; };
+		218DD385281AFA4C0058FED3 /* GitAlertNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218DD384281AFA4C0058FED3 /* GitAlertNetworkModel.swift */; };
+		218DD387281AFBB70058FED3 /* GitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218DD386281AFBB70058FED3 /* GitError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		216D7443281849F2000AC835 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		216D744628185CB9000AC835 /* UserDetailNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailNetworkModel.swift; sourceTree = "<group>"; };
 		216D744828186745000AC835 /* MainUserNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserNetworkModel.swift; sourceTree = "<group>"; };
+		218DD384281AFA4C0058FED3 /* GitAlertNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAlertNetworkModel.swift; sourceTree = "<group>"; };
+		218DD386281AFBB70058FED3 /* GitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 		216D7415281813D7000AC835 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				218DD386281AFBB70058FED3 /* GitError.swift */,
 				216D744528185C9D000AC835 /* Models */,
 				216D743628183B94000AC835 /* NetworkService.swift */,
 			);
@@ -244,6 +249,7 @@
 		216D744528185C9D000AC835 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				218DD384281AFA4C0058FED3 /* GitAlertNetworkModel.swift */,
 				216D744828186745000AC835 /* MainUserNetworkModel.swift */,
 				216D744628185CB9000AC835 /* UserDetailNetworkModel.swift */,
 				216D743F28184835000AC835 /* GitHubMoya.swift */,
@@ -346,11 +352,13 @@
 				216D741C2818147F000AC835 /* DetailViewController.swift in Sources */,
 				216D743B28183E2E000AC835 /* UserData.swift in Sources */,
 				216D743728183B94000AC835 /* NetworkService.swift in Sources */,
+				218DD387281AFBB70058FED3 /* GitError.swift in Sources */,
 				216D73F12818028F000AC835 /* AppDelegate.swift in Sources */,
 				216D73F32818028F000AC835 /* SceneDelegate.swift in Sources */,
 				216D743528183AFA000AC835 /* ModuleBuilder.swift in Sources */,
 				216D743D281840BB000AC835 /* DetailViewPresenter.swift in Sources */,
 				216D742D281835CD000AC835 /* GitUserCellModel.swift in Sources */,
+				218DD385281AFA4C0058FED3 /* GitAlertNetworkModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

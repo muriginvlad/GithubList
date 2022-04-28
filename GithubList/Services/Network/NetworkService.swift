@@ -9,6 +9,7 @@ import Foundation
 import Moya
 import PromiseKit
 
+
 protocol NetworkServiceProtocol {
     func getAllUser(since: Int) -> Promise<MainUsersNetworkModel>
     func getSingleUser(userName: String) -> Promise<UserDetailNetworkModel>
@@ -27,6 +28,11 @@ class NetworkService: NetworkServiceProtocol {
                     if let responseModel = try? response.map(MainUsersNetworkModel.self) {
                         seal.fulfill(responseModel)
                     }
+                    
+                    if let responseModel = try? response.map(GitAlertNetworkModel.self) {
+                        seal.reject(GitError.somethingIsWrong(info: responseModel.message ?? ""))
+                    }
+                    
                 case .failure(let error):
                     print(error.errorDescription ?? "Unknown error")
                     seal.reject(error)
