@@ -1,16 +1,16 @@
-# Описание
+# Description
+
+ Main screen:
+- List of all Github users (API https://developer.github.com/v3/users/#get-all-users)
+- Cell fields: avatar, name, id
+- By clicking on an element of the list, implement a transition to the screen with information about the user
+- Pagination and Pull-to-refresh
  
-Главный экран:
-- Cписок всех Github пользователей (API https://developer.github.com/v3/users/#get-all-users)
-- Поля ячейки: аватар, имя , id 
-- По нажатию на элемент списка реализовать переход на экран с информацией о пользователе
-- Pagination и Pull-to-refresh
- 
-Экран с информацией о пользователе:
-- Информация о пользователе (API https://developer.github.com/v3/users/#get-a-single-user)
-- Поля: аватар, имя, почта, организация, кол-во подписчиков,кол-во подписок, дата создания аккаунта
- 
-Стек:
+User information screen:
+- User information (API https://developer.github.com/v3/users/#get-a-single-user)
+- Fields: avatar, name, mail, organization, number of subscribers, number of subscriptions, account creation date
+
+Technology / Stack:
 - MVP
 - Moya + PromiseKit
 - SnapKit
